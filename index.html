@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAXHE SRL | Terrassement & Démolition à Sprimont | Devis Gratuit</title>
+    <style>
+        /* Styles Généraux & Couleurs */
+        :root {
+            --primary: #f39c12; /* Orange de chantier */
+            --secondary: #2c3e50; /* Gris foncé ardoise */
+            --light: #f8f9fa;
+            --dark: #1a252f;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo { 
+            font-size: 1.4rem; 
+            font-weight: bold; 
+            color: white; 
+        }
+        .logo span { color: var(--primary); }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Section Accueil (Hero) */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+                        url('images/grue.jpg') no-repeat; /* IMAGE LOCALE DU FOND */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero p { font-size: 1.3rem; margin-bottom: 25px; max-width: 700px; }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 14px 35px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn:hover { background: #e67e22; transform: translateY(-2px); }
+
+        /* Section Titres */
+        section { padding: 70px 10%; }
+        section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        section h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0 auto;
+        }
+
+        /* Services */
+        .services { background: var(--light); }
+        .grid-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            border-top: 5px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: var(--secondary); margin-top: 0; }
+
+        /* Galerie Réalisations */
+        .grid-galerie {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .galerie-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 250px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .galerie-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .galerie-item:hover img { transform: scale(1.1); }
+        .galerie-desc {
+            position: absolute;
+            bottom: 0;
+            background: rgba(26, 37, 47, 0.85);
+            color: white;
+            width: 100%;
+            padding: 10px 15px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+
+        /* Zone Contact & Devis (Côte à côte) */
+        .devis { background: var(--light); }
+        .contact-flex-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: auto;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+        input, select, textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Boîte Informations Entreprise */
+        .company-info-box {
+            background: var(--dark);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .company-info-box h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-item {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .info-item strong {
+            color: #bdc3c7;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .company-info-box a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .company-info-box a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.95rem;
+            border-top: 1px solid #2c3e50;
+        }
+        footer p { margin: 5px 0; }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-flex-container { grid-template-columns: 1fr; gap: 30px; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.1rem; }
+            nav { flex-direction: column; text-align: center; gap: 15px; }
+            .nav-links a { margin: 0 10px; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            section { padding: 50px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">HAXHE SRL<span>-SPRIMONT</span></div>
+        <div class="nav-links">
+            <a href="#services">Nos Services</a>
+            <a href="#galerie">Réalisations</a>
+            <a href="#devis">Contact & Devis</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Terrassement & Démolition à Sprimont</h1>
+        <p>Votre partenaire de confiance en région liégeoise pour la préparation de terrains, démolitions sécurisées et pose de citernes.</p>
+        <a href="#devis" class="btn">Votre Devis Gratuit ici</a>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Nos Services</h2>
+        <div class="grid-services">
+            <div class="card">
+                <h3>Terrassement Général</h3>
+                <p>Aménagement de terrains, fondations pour maisons et extensions, nivellement de jardins et création d'entrées de garage à Sprimont.</p>
+            </div>
+            <div class="card">
+                <h3>Travaux de Démolition</h3>
+                <p>Démolition contrôlée et sécurisée de bâtiments, annexes, murs ou dalles en béton. Évacuation propre et triée des gravats.</p>
+            </div>
+            <div class="card">
+                <h3>Pose de Citernes à Eau</h3>
+                <p>Installation complète et enfouissement de citernes de récupération d'eau de pluie (béton ou plastique) pour faire des économies au quotidien.</p>
+            </div>
+            <div class="card">
+                <h3>Systèmes d'Épuration</h3>
+                <p>Pose et raccordement de citernes d'épuration agréées, micro-stations et fosses septiques en stricte conformité avec les normes environnementales.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="galerie">
+        <h2>Nos Réalisations</h2>
+        <div class="grid-galerie">
+            <div class="galerie-item">
+                <img src="images/mo.jpg" alt="Chantier de terrassement"> <!-- IMAGE LOCALE 1 -->
+                <div class="galerie-desc">Terrassement pour nouvelle construction</div>
+            </div>
+            <div class="galerie-item">
+                <img src="images/demo.jpg" alt="Démolition de bâtiment"> <!-- IMAGE LOCALE 2 -->
+                <div class="galerie-desc">Démolition sécurisée d'une ancienne annexe</div>
+            </div>
+            <div class="galerie-item">
+                <img src="images/ci.jpg" alt="Pose de citerne"> <!-- IMAGE LOCALE 3 -->
+                <div class="galerie-desc">Installation et enfouissement d'une citerne à eau</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="devis" class="devis">
+        <h2>Contact & Devis Gratuit</h2>
+        <div class="contact-flex-container">
+            
+            <!-- Colonne Formulaire de devis -->
+            <div class="form-container">
+                <form action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nom">Nom / Entreprise *</label>
+                            <input type="text" id="nom" name="nom" required placeholder="Votre nom ou société">
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone *</label>
+                            <input type="tel" id="telephone" name="telephone" required placeholder="Ex: 0495 00 00 00">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Adresse Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-type">Type de Travaux souhaité *</label>
+                        <select id="service-type" name="service-type" required>
+                            <option value="">-- Sélectionnez un service --</option>
+                            <option value="terrassement">Terrassement / Nivellement</option>
+                            <option value="demolition">Démolition</option>
+                            <option value="citerne-eau">Pose de Citerne à Eau</option>
+                            <option value="epuration">Pose de Citerne d'Épuration / Fosse</option>
+                            <option value="complet">Plusieurs services combinés</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Description de votre projet (lieu précis, dimensions...) *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Expliquez brièvement votre projet à Sprimont ou alentours..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 10px;">
+                        <button type="submit" class="btn" style="cursor: pointer; width: 100%;">Envoyer ma demande de devis</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Colonne Infos de l'entreprise -->
+            <div class="company-info-box">
+                <h3>HAXHE SRL</h3>
+                
+                <div class="info-item">
+                    <strong>Adresse Officielle</strong>
+                    Rue du Tultay 6,<br>
+                    4140 Sprimont
+                </div>
+
+                <div class="info-item">
+                    <strong>Téléphone</strong>
+                    <a href="tel:+3243608937">+32 (0) 43 60 89 37</a>
+                </div>
+
+                <div class="info-item">
+                    <strong>Adresse E-mail</strong>
+                    <a href="mailto:haxhe.francis@skynet.be">haxhe.francis@skynet.be</a>
+                </div>
+
+                <div class="info-item" style="margin-top: 15px; border-top: 1px solid #2c3e50; padding-top: 15px; font-size: 0.9rem; color: #a0aab2;">
+                    Disponible pour vos chantiers de terrassement, assainissement et démolition à Sprimont et dans toute la province de Liège.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>HAXHE SRL - Entreprise de Terrassement & Démolition Sprimont</strong></p>
+        <p>Services professionnels en Province de Liège</p>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: #aaa;">&copy; 2026 - Tous droits réservés.</p>
+        <p style="font-size: 0.8rem; color: #777;">Création de maquette Pullara Lorenzo</p>
+    </footer>
+
+</body>
+</html>
